@@ -3,99 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imobiliária Corporativa | Admin</title>
+    <title>Dashboard - Imobiliária Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container py-5">
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <div>
-                <h1 class="main-title">Aba de Operações</h1>
-                <p class="m-0 text-muted">Cadastro e Monitoramento de Ativos Imobiliários</p>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-                <span style="width: 10px; height: 10px; background-color: var(--success); border-radius: 50%;"></span>
-                <span class="small fw-semibold" style="color: #ffffff;">Servidor Java Conectado</span>
-            </div>
+    <nav class="navbar navbar-premium mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                🏢 Imobiliária <span class="text-gradient">Premium</span> 
+                <span class="badge badge-status ms-2">Backoffice v2.0</span>
+            </a>
         </div>
+    </nav>
 
+    <div class="container">
         <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="dashboard-card">
-                    <h2 class="section-title">Cadastrar Novo Registro</h2>
+            <div class="col-lg-5">
+                <div class="card card-custom p-4">
+                    <div class="card-header-custom mb-4">
+                        <h4><i class="fas fa-plus-circle me-2 icon-purple"></i>Novo Ativo</h4>
+                        <p class="text-muted small">Insira as informações do imóvel para publicação imediata.</p>
+                    </div>
                     
-                    <form id="formImovel">
-                        <div class="input-group-custom">
-                            <label class="input-label" for="endereco">Endereço Completo</label>
-                            <input type="text" id="endereco" class="form-input" placeholder="Rua, Número, Bairro e Cidade" required>
-                        </div>
-                        
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="input-group-custom">
-                                    <label class="input-label" for="quartos">Total de Quartos</label>
-                                    <input type="number" id="quartos" class="form-input" placeholder="0" min="0" required>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="input-group-custom">
-                                    <label class="input-label" for="banheiros">Banheiros</label>
-                                    <input type="number" id="banheiros" class="form-input" placeholder="0" min="0" required>
-                                </div>
-                            </div>
+                    <form id="formCadastroImovel">
+                        <div class="mb-3">
+                            <label class="form-label">Endereço Completo</label>
+                            <input type="text" class="form-control" id="imovelEndereco" placeholder="Ex: Av. Paulista, 1200 - Apto 42" required>
                         </div>
 
-                        <div class="input-group-custom">
-                            <label class="input-label" for="preco">Preço de Venda (R$)</label>
-                            <input type="number" id="preco" class="form-input" step="0.01" placeholder="Ex: 500000.00" required>
+                        <div class="mb-3">
+                            <label class="form-label">Tipo do Imóvel</label>
+                            <select class="form-select" id="imovelTipo" required>
+                                <option value="Casa" selected>🏠 Casa</option>
+                                <option value="Apartamento">🏢 Apartamento</option>
+                            </select>
                         </div>
 
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="input-group-custom">
-                                    <label class="input-label" for="vagasGaragem">Vagas na Garagem</label>
-                                    <input type="number" id="vagasGaragem" class="form-input" placeholder="0" min="0" required>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="input-group-custom">
-                                    <label class="input-label" for="suites">Suítes Disponíveis</label>
-                                    <input type="number" id="suites" class="form-input" placeholder="0" min="0" required>
-                                </div>
+                        <div class="mb-4">
+                            <label class="form-label">Preço de Venda (R$)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">R$</span>
+                                <input type="number" step="0.01" class="form-control" id="imovelPreco" placeholder="0,00" required>
                             </div>
                         </div>
 
-                        <div class="input-group-custom d-flex align-items-center gap-3 py-2">
-                            <input type="checkbox" id="disponivel" style="width: 18px; height: 18px; cursor: pointer;" checked>
-                            <label for="disponivel" class="m-0 text-white small fw-semibold" style="cursor: pointer;">Disponibilizar para venda imediatamente</label>
+                        <div class="row g-3 mb-4">
+                            <div class="col-4">
+                                <label class="form-label text-center d-block">Quartos</label>
+                                <input type="number" class="form-control text-center" id="imovelQuartos" min="0" value="1" required>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label text-center d-block">Banheiros</label>
+                                <input type="number" class="form-control text-center" id="imovelBanheiros" min="0" value="1" required>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label text-center d-block">Vagas</label>
+                                <input type="number" class="form-control text-center" id="imovelVagas" min="0" value="0" required>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn-submit mt-3">Salvar Ativo no Banco de Dados</button>
+                        <button type="submit" class="btn btn-premium w-100">
+                            Publicar Imóvel <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
                     </form>
                 </div>
             </div>
 
-            <div class="col-lg-8">
-                <div class="dashboard-card h-100">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2 class="section-title m-0">Registros no Banco de Dados</h2>
-                        <button type="button" onclick="carregarImoveis()" class="btn-sync">Sincronizar Lista</button>
+            <div class="col-lg-7">
+                <div class="card card-custom p-4">
+                    <div class="card-header-custom mb-4">
+                        <h4><i class="fas fa-database me-2 icon-purple"></i>Banco de Dados Ativo</h4>
+                        <p class="text-muted small">Monitoramento em tempo real dos registros no MySQL.</p>
                     </div>
-
+                    
                     <div class="table-responsive">
-                        <table class="premium-table">
+                        <table class="table align-middle">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Especificação</th>
                                     <th>Localização</th>
-                                    <th>Especificação Interna</th>
-                                    <th>Preço Avaliado</th>
-                                    <th>Status Atual</th>
+                                    <th>Valor de Mercado</th>
+                                    <th class="text-center">Ações</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabelaImoveis">
+                            <tbody id="tabelaAdminImoveis">
                                 </tbody>
                         </table>
                     </div>

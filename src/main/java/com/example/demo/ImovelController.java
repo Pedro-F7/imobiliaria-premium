@@ -1,42 +1,58 @@
 package com.example.demo;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController // Diz ao Spring que esta classe vai cuidar das rotas Web (URLs)
-@org.springframework.web.bind.annotation.CrossOrigin(origins = "*")
-@RequestMapping("/imoveis") // Define que todas as rotas aqui vão começar com /imoveis
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/imoveis")
 public class ImovelController {
 
-    @Autowired // Manda o Spring injetar o Repository aqui automaticamente
+    @Autowired
     private ImovelRepository imovelRepository;
 
-    // ROTA 1: Listar todos os imóveis (http://localhost:8000/imoveis)
     @GetMapping
-    public List<Imovel> listarTodos() {
-        return imovelRepository.findAll(); // Busca tudo o que estiver salvo no MySQL
+    public ResponseEntity<List<Imovel>> listarImoveis(
+            @RequestParam(required = false) String busca,
+            @RequestParam(required = false) String tipo) {
+
+        if ((busca == null || busca.isEmpty())
+                && (tipo == null || tipo.equalsIgnoreCase("Todos os imóveis") || tipo.isEmpty())) {
+            return ResponseEntity.ok(imovelRepository.findByDisponivelTrue());
+        }
+
+        if (busca != null && !busca.isEmpty() && tipo != null && !tipo.equalsIgnoreCase("Todos os imóveis")) {
+            return ResponseEntity.ok(
+                    imovelRepository.findByEnderecoContainingIgnoreCaseAndTipoIgnoreCaseAndDisponivelTrue(busca, tipo));
+        }
+
+        if (busca != null && !busca.isEmpty()) {
+            return ResponseEntity.ok(imovelRepository.findByEnderecoContainingIgnoreCaseAndDisponivelTrue(busca));
+        }
+
+        return ResponseEntity.ok(imovelRepository.findByTipoIgnoreCaseAndDisponivelTrue(tipo));
     }
 
-    // ROTA 2: Criar um imóvel de teste direto pelo navegador
-    // (http://localhost:8000/imoveis/criar-teste)
-    @GetMapping("/criar-teste")
-    public String criarTeste() {
-        Imovel teste = new Imovel(
-                null,
-                "Avenida Paulista, 1000 - São Paulo",
-                3,
-                2,
-                750000.00,
-                true,
-                2,
-                1);
+    @PostMapping
+    public ResponseEntity<Imovel> cadastrarImovel(@RequestBody Imovel imovel) {
+        imovel.setDisponivel(true);
+        Imovel novoImovel = imovelRepository.save(imovel);
+        return ResponseEntity.ok(novoImovel);
+    }
 
-        imovelRepository.save(teste); // Salva o imóvel no seu MySQL!
-
-        return "Imóvel de teste salvo com sucesso no seu MySQL!";
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarImovel(@PathVariable Long id) {
+        imovelRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

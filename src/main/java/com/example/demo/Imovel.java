@@ -13,31 +13,16 @@ public class Imovel {
     private Long id;
 
     private String endereco;
-    private int numeroQuartos;
-    private int numeroBanheiros;
-    private double preco;
-    private boolean disponivel;
-    private int numeroGaragem;
-    private int numeroPiscinas;
+    private Double preco;
+    private Integer qtdQuartos;
+    private Integer qtdBanheiros;
+    private Integer vagasGaragem;
+    private Boolean disponivel;
+    private String tipo;
 
     public Imovel() {
     }
 
-    // 2. Construtor Completo (Para facilitar quando formos testar ou criar imóveis)
-    public Imovel(Long id, String endereco, int numeroQuartos, int numeroBanheiros, double preco, boolean disponivel,
-            int numeroGaragem, int numeroPiscinas) {
-        this.id = id;
-        this.endereco = endereco;
-        this.numeroQuartos = numeroQuartos;
-        this.numeroBanheiros = numeroBanheiros;
-        this.preco = preco;
-        this.disponivel = disponivel;
-        this.numeroGaragem = numeroGaragem;
-        this.numeroPiscinas = numeroPiscinas;
-    }
-
-    // 3. Getters e Setters (Manuais, garantindo compatibilidade total com o Java
-    // 25)
     public Long getId() {
         return id;
     }
@@ -54,51 +39,51 @@ public class Imovel {
         this.endereco = endereco;
     }
 
-    public int getNumeroQuartos() {
-        return numeroQuartos;
-    }
-
-    public void setNumeroQuartos(int numeroQuartos) {
-        this.numeroQuartos = numeroQuartos;
-    }
-
-    public int getNumeroBanheiros() {
-        return numeroBanheiros;
-    }
-
-    public void setNumeroBanheiros(int numeroBanheiros) {
-        this.numeroBanheiros = numeroBanheiros;
-    }
-
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
-    public boolean isDisponivel() {
+    public Integer getQtdQuartos() {
+        return qtdQuartos;
+    }
+
+    public void setQtdQuartos(Integer qtdQuartos) {
+        this.qtdQuartos = qtdQuartos;
+    }
+
+    public Integer getQtdBanheiros() {
+        return qtdBanheiros;
+    }
+
+    public void setQtdBanheiros(Integer qtdBanheiros) {
+        this.qtdBanheiros = qtdBanheiros;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Integer getVagasGaragem() {
+        return vagasGaragem;
+    }
+
+    public void setVagasGaragem(Integer vagasGaragem) {
+        this.vagasGaragem = vagasGaragem;
+    }
+
+    public Boolean getDisponivel() {
         return disponivel;
     }
 
-    public void setDisponivel(boolean disponivel) {
+    public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    public int getNumeroGaragem() {
-        return numeroGaragem;
-    }
-
-    public void setNumeroGaragem(int numeroGaragem) {
-        this.numeroGaragem = numeroGaragem;
-    }
-
-    public int getNumeroPiscinas() {
-        return numeroPiscinas;
-    }
-
-    public void setNumeroPiscinas(int numeroPiscinas) {
-        this.numeroPiscinas = numeroPiscinas;
     }
 }
