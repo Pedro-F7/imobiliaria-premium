@@ -50,6 +50,13 @@ public class ImovelController {
         return ResponseEntity.ok(novoImovel);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Imovel> buscarPorId(@PathVariable Long id) {
+        return imovelRepository.findById(id)
+                .map(imovel -> ResponseEntity.ok().body(imovel))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarImovel(@PathVariable Long id) {
         imovelRepository.deleteById(id);

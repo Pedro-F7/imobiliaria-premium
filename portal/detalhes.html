@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Imóveis - Detalhes do Imóvel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="detalhes.css">
+</head>
+<body>
+
+    <header class="navbar-portal">
+        <div class="navbar-container">
+            <h1 class="logo-portal">premium<span>imóveis</span></h1>
+            <nav class="menu-links">
+                <a href="#" class="active">Alugar</a>
+                <a href="#">Comprar</a>
+                <a href="#">Lançamentos</a>
+                <a href="#">Descobrir</a>
+                <a href="#">Anunciar</a>
+                <a href="#">Ajuda</a>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn-criar-conta">Criar conta</button>
+                <button class="btn-entrar">Entrar</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="btn-voltar-container">
+        <a href="index.html" class="btn-voltar-link">← Voltar para a busca</a>
+    </div>
+
+    <section class="galeria-fotos">
+        <div class="foto-destaque"></div>
+        <div class="fotos-secundarias">
+            <div class="foto-item-sub"></div>
+            <div class="foto-item-sub"></div>
+        </div>
+    </section>
+
+    <main class="conteudo-principal">
+        
+        <section class="informacoes-imovel">
+            <h2 id="titulo-imovel" class="titulo-imovel">Carregando informações...</h2>
+            <p id="localizacao-imovel" class="endereco-imovel">
+                <i class="fa-solid fa-location-dot"></i> Carregando localização...
+            </p>
+
+            <div class="grid-especificacoes">
+                <div class="card-especificacao">
+                    <i class="fa-solid fa-bed"></i>
+                    <span class="label-espec">Dormitórios</span>
+                    <span id="detalhes-quartos" class="valor-espec">-</span>
+                </div>
+                <div class="card-especificacao">
+                    <i class="fa-solid fa-bath"></i>
+                    <span class="label-espec">Banheiros</span>
+                    <span id="detalhes-banheiros" class="valor-espec">-</span>
+                </div>
+                <div class="card-especificacao">
+                    <i class="fa-solid fa-car"></i>
+                    <span class="label-espec">Vagas</span>
+                    <span id="detalhes-vagas" class="valor-espec">-</span>
+                </div>
+            </div>
+        </section>
+
+        <aside class="painel-valores">
+            <div class="card-valores-sticky">
+                <span class="sub-label">Valor de Venda</span>
+                <div id="preco-imovel" class="preco-principal">R$ 0,00</div>
+                
+                <hr class="divisor-card">
+                
+                <a href="https://wa.me/seu-numero" target="_blank" class="btn-acao-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> Contatar Imobiliária
+                </a>
+            </div>
+        </aside>
+
+    </main>
+
+    <script src="detalhes.js"></script>
+</body>
+</html>

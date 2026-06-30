@@ -1,102 +1,95 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Imobiliária Premium</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Imobiliária Premium - Backoffice</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-premium mb-5">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                🏢 Imobiliária <span class="text-gradient">Premium</span> 
-                <span class="badge badge-status ms-2">Backoffice v2.0</span>
-            </a>
+    <header class="navbar-admin">
+        <div class="nav-brand">🏢 Imobiliária <span>Premium</span> <small>Backoffice v2.0</small></div>
+    </header>
+
+    <div class="container-admin">
+        <div class="card-formulario">
+            <h3>Novo Ativo</h3>
+            <p class="subtitle">Insira as informações do imóvel para publicação imediata.</p>
+            
+            <form id="form-imovel">
+                <div class="input-block">
+                    <label>NOME / TÍTULO DO IMÓVEL</label>
+                    <input type="text" id="titulo" placeholder="Ex: Casa de 109m² com 3 Quartos" required>
+                </div>
+
+                <div class="input-block">
+                    <label>ENDEREÇO COMPLETO</label>
+                    <input type="text" id="endereco" placeholder="Ex: Av. Paulista, 1200 - Apto 42" required>
+                </div>
+
+                <div class="input-block">
+                    <label>TIPO DO IMÓVEL</label>
+                    <select id="tipo">
+                        <option value="Casa">🏡 Casa</option>
+                        <option value="Apartamento">🏢 Apartamento</option>
+                    </select>
+                </div>
+
+                <div class="input-block">
+                    <label>PREÇO DE VENDA (R$)</label>
+                    <div class="input-with-prefix">
+                        <span>R$</span>
+                        <input type="number" id="preco" step="0.01" placeholder="0,00" required>
+                    </div>
+                </div>
+
+                <div class="grid-tres-colunas">
+                    <div class="input-block">
+                        <label>QUARTOS</label>
+                        <input type="number" id="quartos" value="1" min="0">
+                    </div>
+                    <div class="input-block">
+                        <label>BANHEIROS</label>
+                        <input type="number" id="banheiros" value="1" min="0">
+                    </div>
+                    <div class="input-block">
+                        <label>VAGAS</label>
+                        <input type="number" id="vagas" value="0" min="0">
+                    </div>
+                </div>
+
+                <div class="input-block">
+                    <label>FOTO DO IMÓVEL (OPCIONAL)</label>
+                    <label for="foto-arquivo" class="custom-file-upload">
+                        📁 Selecionar Imagem...
+                    </label>
+                    <input type="file" id="foto-arquivo" accept="image/*">
+                    <span id="file-name" class="file-name-txt">Nenhum arquivo selecionado</span>
+                </div>
+
+                <button type="submit" class="btn-submit">Publicar Imóvel</button>
+            </form>
         </div>
-    </nav>
 
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-5">
-                <div class="card card-custom p-4">
-                    <div class="card-header-custom mb-4">
-                        <h4><i class="fas fa-plus-circle me-2 icon-purple"></i>Novo Ativo</h4>
-                        <p class="text-muted small">Insira as informações do imóvel para publicação imediata.</p>
-                    </div>
-                    
-                    <form id="formCadastroImovel">
-                        <div class="mb-3">
-                            <label class="form-label">Endereço Completo</label>
-                            <input type="text" class="form-control" id="imovelEndereco" placeholder="Ex: Av. Paulista, 1200 - Apto 42" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Tipo do Imóvel</label>
-                            <select class="form-select" id="imovelTipo" required>
-                                <option value="Casa" selected>🏠 Casa</option>
-                                <option value="Apartamento">🏢 Apartamento</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label">Preço de Venda (R$)</label>
-                            <div class="input-group">
-                                <span class="input-group-text">R$</span>
-                                <input type="number" step="0.01" class="form-control" id="imovelPreco" placeholder="0,00" required>
-                            </div>
-                        </div>
-
-                        <div class="row g-3 mb-4">
-                            <div class="col-4">
-                                <label class="form-label text-center d-block">Quartos</label>
-                                <input type="number" class="form-control text-center" id="imovelQuartos" min="0" value="1" required>
-                            </div>
-                            <div class="col-4">
-                                <label class="form-label text-center d-block">Banheiros</label>
-                                <input type="number" class="form-control text-center" id="imovelBanheiros" min="0" value="1" required>
-                            </div>
-                            <div class="col-4">
-                                <label class="form-label text-center d-block">Vagas</label>
-                                <input type="number" class="form-control text-center" id="imovelVagas" min="0" value="0" required>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-premium w-100">
-                            Publicar Imóvel <i class="fas fa-arrow-right ms-2"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-7">
-                <div class="card card-custom p-4">
-                    <div class="card-header-custom mb-4">
-                        <h4><i class="fas fa-database me-2 icon-purple"></i>Banco de Dados Ativo</h4>
-                        <p class="text-muted small">Monitoramento em tempo real dos registros no MySQL.</p>
-                    </div>
-                    
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Especificação</th>
-                                    <th>Localização</th>
-                                    <th>Valor de Mercado</th>
-                                    <th class="text-center">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabelaAdminImoveis">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="card-tabela">
+            <h3>Banco de Dados Ativo</h3>
+            <p class="subtitle">Monitoramento em tempo real dos registros no MySQL.</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ESPECIFICAÇÃO</th>
+                            <th>LOCALIZAÇÃO</th>
+                            <th>VALOR DE MERCADO</th>
+                            <th style="text-align: center;">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-imoveis">
+                        </tbody>
+                </table>
+                <div id="tabela-vazia" class="empty-state">Nenhum imóvel indexado no MySQL.</div>
             </div>
         </div>
     </div>

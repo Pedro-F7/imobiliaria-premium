@@ -1,104 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Imóveis | O maior portal da região</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Premium Imóveis - Encontre seu imóvel ideal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-portal">
-        <div class="container">
-            <a class="navbar-brand-custom" href="#">premium<span>imóveis</span></a>
-            <div class="d-flex align-items-center gap-3 ms-auto order-lg-last">
-                <a href="#" class="btn-nav-secondary">Criar conta</a>
-                <a href="#" class="btn-nav-primary">Entrar</a>
-            </div>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav gap-3">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button">Alugar</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button">Comprar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Lançamentos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Descobrir</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Anunciar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ajuda</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero-portal">
-        <div class="container position-relative h-100">
-            <div class="row align-items-center h-100">
-                <div class="col-lg-5 position-relative z-2">
-                    <div class="search-container-box">
-                        <h1 class="hero-main-title">A casa que você quer está aqui. Só na Premiumimóveis você encontra os melhores imóveis.</h1>
-                        
-                        <div class="search-tabs d-flex gap-4">
-                            <button class="tab-btn active">🛒 Comprar</button>
-                            <button class="tab-btn">🔑 Alugar</button>
-                            <button class="tab-btn">🏢 Lançamentos</button>
-                        </div>
-
-                        <div class="search-fields">
-                            <div class="field-group">
-                                <label class="field-label">Onde deseja morar?</label>
-                                <div class="input-with-icon">
-                                    <span class="icon">🔍</span>
-                                    <input type="text" placeholder="Busque rua, bairro ou cidade...">
-                                </div>
-                            </div>
-
-                            <div class="field-group">
-                                <label class="field-label">Tipo de imóvel</label>
-                                <select class="form-select-custom">
-                                    <option>Todos os imóveis</option>
-                                    <option>Casas</option>
-                                    <option>Apartamentos</option>
-                                </select>
-                            </div>
-
-                            <button class="btn-search-submit">Buscar</button>
-                        </div>
-                    </div>
-                </div>
+    <header class="navbar-portal">
+        <div class="navbar-container">
+            <h1 class="logo-portal">premium<span>imóveis</span></h1>
+            <nav class="menu-links">
+                <a href="#" class="active">Descobrir Ativos</a>
+                <a href="../admin/index.html" target="_blank">Painel Gerente</a>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn-criar-conta">Criar conta</button>
+                <button class="btn-entrar">Entrar</button>
             </div>
         </div>
     </header>
 
-    <main class="container my-5 py-4">
-        <h2 class="vitrine-heading text-center">Encontre o imóvel ideal para seu estilo de vida.</h2>
-        <div class="divider-purple mx-auto mb-5"></div>
+    <section class="hero-section">
+        <div class="hero-left">
+            <div class="card-busca">
+                <h2 class="titulo-busca">A casa que você quer está aqui. Só na Premiumimóveis você encontra os melhores imóveis.</h2>
+                
+                <div class="abas-busca">
+                    <button class="aba-btn active" data-tipo="Casa"><i class="fa-solid fa-house"></i> Casas</button>
+                    <button class="aba-btn" data-tipo="Apartamento"><i class="fa-solid fa-building"></i> Apartamentos</button>
+                    <button class="aba-btn" data-tipo="Lancamento"><i class="fa-solid fa-rocket"></i> Lançamentos</button>
+                </div>
 
-        <div class="row g-4" id="vitrinePublica">
+                <div class="form-busca">
+                    <div class="input-grupo">
+                        <label>Onde deseja morar?</label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="input-localidade" placeholder="Digite um bairro ou endereço...">
+                        </div>
+                    </div>
+                    <button class="btn-buscar-submit" id="btn-filtrar-pesquisa">Filtrar Ativos</button>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right"></div>
+    </section>
+
+    <main class="vitrine-section">
+        <h3 class="chamada-vitrine" id="titulo-vitrine">Exibindo todos os imóveis disponíveis</h3>
+        <div class="linha-decorativa"></div>
+
+        <div id="grid-imoveis" class="grid-imoveis-container">
             </div>
     </main>
-
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-            <span class="cookie-title">Controle sua privacidade</span>
-            <p>Nosso site usa cookies para melhorar a navegação. <a href="#">Política de Privacidade</a> • <a href="#">Política de Cookies</a></p>
-        </div>
-        <div class="cookie-actions">
-            <button class="btn-cookie-edit">Editar preferências</button>
-            <button class="btn-cookie-accept" onclick="document.getElementById('cookieBanner').style.display='none'">Aceitar</button>
-        </div>
-    </div>
 
     <script src="app.js"></script>
 </body>

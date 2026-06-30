@@ -1,0 +1,259 @@
+:root {
+    --purple-main: #6922af;
+    --purple-hover: #541991;
+    --text-dark: #121620;
+    --text-gray: #64748b;
+    --bg-light: #fbfafd;
+    --border-color: #f1f0f5;
+    --font-stack: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-stack);
+}
+
+body {
+    background-color: #ffffff;
+    color: var(--text-dark);
+}
+
+/* Navbar Idêntica à Foto do Portal */
+.navbar-portal {
+    background: #ffffff;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.logo-portal {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-dark);
+}
+
+.logo-portal span {
+    color: var(--purple-main);
+}
+
+.menu-links {
+    display: flex;
+    gap: 28px;
+}
+
+.menu-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-criar-conta {
+    background-color: var(--purple-main);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-criar-conta:hover {
+    background-color: var(--purple-hover);
+}
+
+.btn-entrar {
+    background: transparent;
+    border: 1px solid #c8c5d0;
+    color: var(--text-dark);
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Link de Voltar */
+.btn-voltar-container {
+    max-width: 1300px;
+    margin: 20px auto 0 auto;
+    padding: 0 24px;
+}
+
+.btn-voltar-link {
+    text-decoration: none;
+    color: var(--purple-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Galeria de Imagens Casada com a Referência */
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 12px;
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 0 24px;
+    height: 440px;
+}
+
+.foto-destaque {
+    background: #e2e8f0 url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80') center/cover;
+    border-radius: 16px;
+}
+
+.fotos-secundarias {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+}
+
+.foto-item-sub {
+    background: #e2e8f0 url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80') center/cover;
+    border-radius: 16px;
+}
+
+/* Layout do Bloco de Conteúdo */
+.conteudo-principal {
+    display: grid;
+    grid-template-columns: 7.5fr 4.5fr;
+    gap: 40px;
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 0 24px;
+}
+
+.titulo-imovel {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.endereco-imovel {
+    color: var(--text-gray);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.endereco-imovel i {
+    color: var(--purple-main);
+}
+
+/* Grid de Ícones Combinando com os Cards Arredondados */
+.grid-especificacoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.card-especificacao {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-especificacao i {
+    font-size: 1.4rem;
+    color: var(--purple-main);
+    margin-bottom: 4px;
+}
+
+.label-espec {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+.valor-espec {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Painel de Preço com a Identidade Arredondada */
+.card-valores-sticky {
+    border: 1px solid var(--border-color);
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    position: sticky;
+    top: 30px;
+}
+
+.sub-label {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.preco-principal {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-top: 4px;
+}
+
+.divisor-card {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 20px 0;
+}
+
+.btn-acao-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background-color: var(--purple-main);
+    color: white;
+    padding: 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.btn-acao-whatsapp:hover {
+    background-color: var(--purple-hover);
+}
+
+/* Celular */
+@media (max-width: 850px) {
+    .galeria-fotos { grid-template-columns: 1fr; height: 260px; }
+    .fotos-secundarias { display: none; }
+    .conteudo-principal { grid-template-columns: 1fr; gap: 30px; }
+    .card-valores-sticky { position: static; }
+}

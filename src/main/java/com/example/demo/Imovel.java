@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Imovel {
@@ -12,6 +13,7 @@ public class Imovel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String titulo; // Novo campo
     private String endereco;
     private Double preco;
     private Integer qtdQuartos;
@@ -19,6 +21,9 @@ public class Imovel {
     private Integer vagasGaragem;
     private Boolean disponivel;
     private String tipo;
+
+    @Lob
+    private String imagemBase64; // Novo campo para a foto
 
     public Imovel() {
     }
@@ -29,6 +34,14 @@ public class Imovel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getEndereco() {
@@ -85,5 +98,13 @@ public class Imovel {
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public String getImagemBase64() {
+        return imagemBase64;
+    }
+
+    public void setImagemBase64(String imagemBase64) {
+        this.imagemBase64 = imagemBase64;
     }
 }

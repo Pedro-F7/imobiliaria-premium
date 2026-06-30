@@ -1,93 +1,104 @@
 const API_URL = "http://localhost:8000/imoveis";
 
-document.getElementById("formCadastroImovel").addEventListener("submit", async (e) => {
+// Atualiza o texto do arquivo anexado na tela
+document.getElementById("foto-arquivo").addEventListener("change", function() {
+    const fileName = this.files.length > 0 ? this.files[0].name : "Nenhum arquivo selecionado";
+    document.getElementById("file-name").innerText = fileName;
+});
+
+document.getElementById("form-imovel").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const dadosImovel = {
-        endereco: document.getElementById("imovelEndereco").value,
-        preco: parseFloat(document.getElementById("imovelPreco").value),
-        qtdQuartos: parseInt(document.getElementById("imovelQuartos").value),
-        qtdBanheiros: parseInt(document.getElementById("imovelBanheiros").value),
-        vagasGaragem: parseInt(document.getElementById("imovelVagas").value),
-        tipo: document.getElementById("imovelTipo").value,
+    const fileInput = document.getElementById("foto-arquivo");
+    let imagemBase64 = "";
+
+    // Validação: Só executa a conversão se houver um arquivo anexado
+    if (fileInput.files && fileInput.files.length > 0) {
+        imagemBase64 = await converterParaBase64(fileInput.files[0]);
+    }
+
+    const imovel = {
+        titulo: document.getElementById("titulo").value,
+        endereco: document.getElementById("endereco").value,
+        preco: parseFloat(document.getElementById("preco").value),
+        qtdQuartos: parseInt(document.getElementById("quartos").value),
+        qtdBanheiros: parseInt(document.getElementById("banheiros").value),
+        vagasGaragem: parseInt(document.getElementById("vagas").value),
+        tipo: document.getElementById("tipo").value,
+        imagemBase64: imagemBase64, // Mandará vazio caso não tenha foto, sem quebrar
         disponivel: true
     };
 
-    try {
-        const resposta = await fetch(API_URL, {
-            method: "POST",
-            mode: "cors",
-            headers: { 
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(dadosImovel)
-        });
-
-        if (resposta.ok) {
-            document.getElementById("formCadastroImovel").reset();
-            carregarTabelaAdmin();
-        } else {
-            alert("Erro ao salvar o imóvel no servidor.");
-        }
-    } catch (erro) {
-        console.error("Erro na conexão:", erro);
-        alert("Não foi possível falar com o Back-end Java. Ele está rodando?");
-    }
+    fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(imovel)
+    })
+    .then(res => {
+        if (!res.ok) throw new Error();
+        return res.json();
+    })
+    .then(() => {
+        document.getElementById("form-imovel").reset();
+        document.getElementById("quartos").value = "1";
+        document.getElementById("banheiros").value = "1";
+        document.getElementById("vagas").value = "0";
+        document.getElementById("file-name").innerText = "Nenhum arquivo selecionado";
+        carregarImoveis();
+    })
+    .catch(() => alert("Erro ao indexar ativo. Verifique se o back-end está rodando."));
 });
 
-async function carregarTabelaAdmin() {
-    try {
-        const resposta = await fetch(API_URL);
-        const imoveis = await resposta.json();
+function converterParaBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
 
-        const tabelaBody = document.getElementById("tabelaAdminImoveis");
-        tabelaBody.innerHTML = "";
+function carregarImoveis() {
+    fetch(API_URL)
+        .then(res => res.json())
+        .then(imoveis => {
+            const tbody = document.getElementById("tabela-imoveis");
+            const divVazia = document.getElementById("tabela-vazia");
+            tbody.innerHTML = "";
 
-        if (imoveis.length === 0) {
-            tabelaBody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-4">Nenhum imóvel indexado no MySQL.</td></tr>`;
-            return;
-        }
+            if (imoveis.length === 0) {
+                divVazia.style.display = "block";
+                return;
+            }
+            
+            divVazia.style.display = "none";
 
-        imoveis.forEach(imovel => {
-            const es_apto = imovel.tipo === "Apartamento";
-            const badgeClass = es_apto ? "badge-apto" : "badge-casa";
-            const icone = es_apto ? "🏢" : "🏠";
+            imoveis.forEach(imovel => {
+                const q = imovel.qtdQuartos || 0;
+                const b = imovel.qtdBanheiros || 0;
+                const v = imovel.vagasGaragem || 0;
 
-            tabelaBody.innerHTML += `
-                <tr>
-                    <td><span class="badge-tipo ${badgeClass}">${icone} ${imovel.tipo || "Casa"}</span></td>
-                    <td class="text-truncate text-white" style="max-width: 200px;" title="${imovel.endereco}">${imovel.endereco}</td>
-                    <td class="fw-bold text-white">R$ ${imovel.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
-                    <td class="text-center">
-                        <button class="btn btn-sm btn-outline-danger" style="border-radius: 6px; padding: 4px 10px;" onclick="deletarImovel(${imovel.id})">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="especificacao-td">${q}Q | ${b}B | ${v}V</td>
+                        <td>${imovel.endereco}</td>
+                        <td>R$ ${imovel.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
+                        <td style="text-align: center;">
+                            <button class="btn-excluir" onclick="deletarImovel(${imovel.id})">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(() => {
+            document.getElementById("tabela-vazia").innerText = "Erro ao conectar com a API local.";
         });
-    } catch (erro) {
-        console.error("Erro ao renderizar tabela:", erro);
+}
+
+function deletarImovel(id) {
+    if (confirm("Confirmar a remoção permanente deste ativo?")) {
+        fetch(`${API_URL}/${id}`, { method: "DELETE" }).then(() => carregarImoveis());
     }
 }
 
-async function deletarImovel(id) {
-    if (!confirm("⚠️ Tem certeza que deseja remover este imóvel permanentemente do sistema?")) return;
-
-    try {
-        const resposta = await fetch(`${API_URL}/${id}`, {
-            method: "DELETE"
-        });
-
-        if (resposta.ok) {
-            carregarTabelaAdmin(); 
-        } else {
-            alert("Erro ao tentar deletar o imóvel do banco de dados.");
-        }
-    } catch (erro) {
-        console.error("Erro na requisição de exclusão:", erro);
-    }
-}
-
-carregarTabelaAdmin();
+carregarImoveis();
