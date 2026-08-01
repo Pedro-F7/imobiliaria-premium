@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/imoveis";
+const API_URL = "http://localhost:8010/imoveis";
 
 // Atualiza o texto do arquivo anexado na tela
 document.getElementById("foto-arquivo").addEventListener("change", function() {
