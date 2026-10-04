@@ -32,24 +32,12 @@ Banco de dados	H2 (em memória)
 Front-end	HTML5, CSS3 (variáveis CSS, Grid, Flexbox), JavaScript ES6+ (Fetch API)
 Ícones	Font Awesome
 🏗️ Arquitetura
-┌──────────────────┐        ┌──────────────────┐
-│  Portal Cliente  │        │    Backoffice    │
-│  (HTML/CSS/JS)   │        │   (HTML/CSS/JS)  │
-└────────┬─────────┘        └────────┬─────────┘
-         │        fetch / JSON       │
-         └──────────────┬────────────┘
-                        ▼
-              ┌───────────────────┐
-              │     API REST      │
-              │   Spring Boot     │
-              │ Controller →      │
-              │ Service →         │
-              │ Repository (JPA)  │
-              └─────────┬─────────┘
-                        ▼
-                  ┌───────────┐
-                  │ H2 (mem.) │
-                  └───────────┘
+
+O projeto é dividido em três partes independentes:
+
+Portal do Cliente e Backoffice: front-ends em HTML, CSS e JavaScript que consomem a API via fetch em JSON.
+API REST: back-end em Spring Boot organizado em camadas (Controller, Service e Repository) com Spring Data JPA.
+Banco de dados: H2 em memória, acessado pela API através do Hibernate.
 Estrutura de pastas
 imobiliaria-premium/
 ├── src/                  # API Spring Boot (código Java)
@@ -92,4 +80,3 @@ Backoffice: admin/index.html
 Pedro · GitHub
 
 ⭐ Se o projeto te ajudou ou chamou atenção, deixe uma estrela!
-
