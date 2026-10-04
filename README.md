@@ -38,14 +38,6 @@ O projeto é dividido em três partes independentes:
 Portal do Cliente e Backoffice: front-ends em HTML, CSS e JavaScript que consomem a API via fetch em JSON.
 API REST: back-end em Spring Boot organizado em camadas (Controller, Service e Repository) com Spring Data JPA.
 Banco de dados: H2 em memória, acessado pela API através do Hibernate.
-Estrutura de pastas
-imobiliaria-premium/
-├── src/                  # API Spring Boot (código Java)
-├── portal/               # Front-end do cliente
-├── admin/                # Backoffice administrativo
-├── docs/screenshots/     # Imagens usadas neste README
-├── pom.xml
-└── README.md
 🚀 Como executar localmente
 Pré-requisitos
 Java JDK 21
