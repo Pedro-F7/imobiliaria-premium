@@ -1,16 +1,3 @@
-🏢 Premium Imóveis
-
-Plataforma imobiliária full stack com API REST em Java (Spring Boot) e dois front-ends independentes: um portal do cliente para busca de imóveis e um backoffice administrativo para cadastro e gestão do catálogo.
-
-📸 Demonstração
-
-<img width="1568" height="609" alt="image" src="https://github.com/user-attachments/assets/afe0e68d-f46f-4efc-be48-c59811b90cee" />
-
-<img width="1568" height="770" alt="image" src="https://github.com/user-attachments/assets/79682014-baf9-4ece-87c4-bd77442a56c2" />
-
-
-<img width="1568" height="778" alt="image" src="https://github.com/user-attachments/assets/d619e71e-c9a8-470a-a762-bd3a077c5c08" />
-
 ✨ Funcionalidades
 🏠 Portal do Cliente (/portal)
 Vitrine dinâmica com todos os imóveis cadastrados, carregados pela API
@@ -26,11 +13,17 @@ Ações sobre cada registro direto na tabela
 Endpoints para listar, cadastrar, atualizar e remover imóveis
 Persistência com Spring Data JPA / Hibernate
 🛠️ Tecnologias
-Camada	Tecnologias
-Back-end	Java 21, Spring Boot 3, Spring Web, Spring Data JPA, Hibernate, Maven
-Banco de dados	H2 (em memória)
-Front-end	HTML5, CSS3 (variáveis CSS, Grid, Flexbox), JavaScript ES6+ (Fetch API)
-Ícones	Font Awesome
+Java 21
+Spring Boot 3
+Spring Web
+Spring Data JPA
+Hibernate
+H2 Database
+Maven
+HTML5
+CSS3
+JavaScript (ES6+)
+Font Awesome
 🏗️ Arquitetura
 
 O projeto é dividido em três partes independentes:
