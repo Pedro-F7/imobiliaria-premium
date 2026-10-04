@@ -1,50 +1,95 @@
-# 🏢 Imobiliária Premium - Plataforma Web Full Stack
+🏢 Premium Imóveis
 
-O **Imobiliária Premium** é uma aplicação web completa desenvolvida para a gestão e visualização de imóveis. O projeto une um front-end moderno e responsivo focado em UX com uma arquitetura back-end sólida construída em **Java com Spring Boot**.
+Plataforma imobiliária full stack com API REST em Java (Spring Boot) e dois front-ends independentes: um portal do cliente para busca de imóveis e um backoffice administrativo para cadastro e gestão do catálogo.
 
----
+📸 Demonstração
 
-## 📸 Demonstração da Aplicação
+<img width="1568" height="609" alt="image" src="https://github.com/user-attachments/assets/afe0e68d-f46f-4efc-be48-c59811b90cee" />
 
-<img width="1913" height="743" alt="image" src="https://github.com/user-attachments/assets/99071745-a947-4fe1-9b4c-fcf32b664226" />
+<img width="1568" height="770" alt="image" src="https://github.com/user-attachments/assets/79682014-baf9-4ece-87c4-bd77442a56c2" />
 
-<img width="1919" height="942" alt="image" src="https://github.com/user-attachments/assets/07c4fc81-ca84-437c-82b0-64ba81ef2277" />
 
-<img width="1908" height="947" alt="image" src="https://github.com/user-attachments/assets/ea1d0195-2c30-40ca-bc6d-82b4c7cd968d" />
+<img width="1568" height="778" alt="image" src="https://github.com/user-attachments/assets/d619e71e-c9a8-470a-a762-bd3a077c5c08" />
 
-## 🛠️ Tecnologias Utilizadas
+✨ Funcionalidades
+🏠 Portal do Cliente (/portal)
+Vitrine dinâmica com todos os imóveis cadastrados, carregados pela API
+Busca por bairro ou endereço, com abas por categoria (Casas, Apartamentos, Lançamentos)
+Página de detalhes com galeria, localização e características (dormitórios, banheiros, vagas)
+Botão Contatar Imobiliária integrado ao WhatsApp
+Layout responsivo com CSS Grid e Flexbox
+⚙️ Backoffice (/admin)
+Cadastro de novos imóveis com upload de foto (opcional)
+Listagem em tempo real dos imóveis registrados no banco de dados
+Ações sobre cada registro direto na tabela
+🔌 API REST (/src)
+Endpoints para listar, cadastrar, atualizar e remover imóveis
+Persistência com Spring Data JPA / Hibernate
+🛠️ Tecnologias
+Camada	Tecnologias
+Back-end	Java 21, Spring Boot 3, Spring Web, Spring Data JPA, Hibernate, Maven
+Banco de dados	H2 (em memória)
+Front-end	HTML5, CSS3 (variáveis CSS, Grid, Flexbox), JavaScript ES6+ (Fetch API)
+Ícones	Font Awesome
+🏗️ Arquitetura
+┌──────────────────┐        ┌──────────────────┐
+│  Portal Cliente  │        │    Backoffice    │
+│  (HTML/CSS/JS)   │        │   (HTML/CSS/JS)  │
+└────────┬─────────┘        └────────┬─────────┘
+         │        fetch / JSON       │
+         └──────────────┬────────────┘
+                        ▼
+              ┌───────────────────┐
+              │     API REST      │
+              │   Spring Boot     │
+              │ Controller →      │
+              │ Service →         │
+              │ Repository (JPA)  │
+              └─────────┬─────────┘
+                        ▼
+                  ┌───────────┐
+                  │ H2 (mem.) │
+                  └───────────┘
+Estrutura de pastas
+imobiliaria-premium/
+├── src/                  # API Spring Boot (código Java)
+├── portal/               # Front-end do cliente
+├── admin/                # Backoffice administrativo
+├── docs/screenshots/     # Imagens usadas neste README
+├── pom.xml
+└── README.md
+🚀 Como executar localmente
+Pré-requisitos
+Java JDK 21
+Git
 
-### Back-end
-- **Java 25**
-- **Spring Boot 3** (Spring Data JPA, Web)
-- **Hibernate** (ORM)
-- **H2 Database** (Banco em memória)
-- **Maven** (Gerenciador de dependências)
+Não é preciso instalar o Maven nem um banco de dados: o projeto usa o Maven Wrapper (mvnw) e o H2 em memória.
 
-### Front-end
-- **HTML5** & **CSS3** (Variáveis CSS, Flexbox, CSS Grid)
-- **JavaScript (ES6+)** (Fetch API para consumo de endpoints)
-- **FontAwesome** (Ícones da interface)
+1. Clonar o repositório
+bash
+git clone https://github.com/Pedro-F7/imobiliaria-premium.git
+cd imobiliaria-premium
+2. Subir a API
+bash
+# Linux / macOS
+./mvnw spring-boot:run
 
----
+# Windows
+mvnw.cmd spring-boot:run
 
-## ✨ Funcionalidades
+Por padrão, a API fica disponível em http://localhost:8080.
 
-- 🏠 **Vitrine Dinâmica de Imóveis:** Listagem e exibição em tempo real de ativos cadastrados no banco de dados.
-- 🔍 **Filtro de Busca:** Interface para busca por tipo, localização e características.
-- 📊 **Detalhes do Imóvel:** Visualização detalhada de cômodos, vagas de garagem e preço.
-- ⚙️ **API RESTful:** Endpoints otimizados para integração assíncrona entre o front-end e back-end.
+💡 Como o banco H2 roda em memória, os dados são apagados sempre que a aplicação é reiniciada.
 
----
+3. Abrir os front-ends
 
-## 🚀 Como Executar o Projeto Localmente
+Os front-ends são estáticos. Abra o index.html de cada pasta com uma extensão como Live Server (VS Code):
 
-### Pré-requisitos
-- **Java JDK 17** ou superior instalado
-- **Git** instalado
+Portal do cliente: portal/index.html
+Backoffice: admin/index.html
+👨‍💻 Autor
 
-### Passo a Passo
+Pedro · GitHub
 
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/Pedro-F7/imobiliaria-premium.git](https://github.com/Pedro-F7/imobiliaria-premium.git)
+⭐ Se o projeto te ajudou ou chamou atenção, deixe uma estrela!
+
