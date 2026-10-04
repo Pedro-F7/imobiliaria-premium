@@ -1,3 +1,7 @@
+🏢 Premium Imóveis
+
+Plataforma imobiliária full stack com API REST em Java (Spring Boot) e dois front-ends independentes: um portal do cliente para busca de imóveis e um backoffice administrativo para cadastro e gestão do catálogo.
+
 ✨ Funcionalidades
 🏠 Portal do Cliente (/portal)
 Vitrine dinâmica com todos os imóveis cadastrados, carregados pela API
@@ -25,6 +29,15 @@ CSS3
 JavaScript (ES6+)
 Font Awesome
 🏗️ Arquitetura
+
+<img width="1568" height="609" alt="image" src="https://github.com/user-attachments/assets/2e07b7a9-146b-4d76-9da1-e3bdd293c20e" />
+
+
+<img width="1568" height="770" alt="image" src="https://github.com/user-attachments/assets/9ac82686-2aa7-4842-a3cf-3a18c1a4ac3a" />
+
+<img width="1568" height="778" alt="image" src="https://github.com/user-attachments/assets/f7eb9c92-d0b6-4837-94b5-3a59dcd0226f" />
+
+
 
 O projeto é dividido em três partes independentes:
 
