@@ -11,7 +11,7 @@ function carregarImoveis() {
             return response.json();
         })
         .then(imoveis => {
-            // ID corrigido para bater com o index.html
+            
             const container = document.getElementById('grid-imoveis'); 
             
             if (!container) {
@@ -19,7 +19,7 @@ function carregarImoveis() {
                 return;
             }
 
-            container.innerHTML = ''; // Limpa o container
+            container.innerHTML = ''; 
 
             if (imoveis.length === 0) {
                 container.innerHTML = '<p class="sem-imoveis">Nenhum imóvel disponível no momento.</p>';
@@ -30,7 +30,7 @@ function carregarImoveis() {
                 const card = document.createElement('div');
                 card.className = 'card-imovel';
 
-                // Tratamento de valores padrão
+            
                 const titulo = imovel.titulo || imovel.tipo || 'Imóvel sem título';
                 const preco = imovel.preco ? `R$ ${Number(imovel.preco).toLocaleString('pt-BR')}` : 'Sob consulta';
                 const endereco = imovel.endereco || 'Localização não informada';
